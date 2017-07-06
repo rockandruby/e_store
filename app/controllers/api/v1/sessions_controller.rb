@@ -7,11 +7,15 @@ class Api::V1::SessionsController < ApplicationController
       user.regenerate_token
       render json: {token: user.token}
     else
-      head 401
+      render json: {status: 422, error: 'Not valid credentials'}
     end
   end
 
   def destroy
-    current_user.logout
+    @current_user.logout
+  end
+
+  def user_info
+    render json: {name: @current_user.name, email: @current_user.email}
   end
 end

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Product from './Product'
 
 class Products extends Component{
 
@@ -10,20 +11,16 @@ class Products extends Component{
   }
 
   componentDidMount(){
-    fetch('/api/v1/products',{
-      headers: {
-        'Authorization': 'Token token=srMbV8ibxWeFvsakgsF8SEVf'
-      }
-    }).then((data)=> data.json())
+    fetch('/api/v1/products').then((data)=> data.json())
       .then((products)=> this.setState({products}))
       .catch((e)=> {console.log(e)})
   }
 
   render(){
-    console.log(this.state);
+    const products = this.state.products.map((item)=> <Product key={item.id} price={item.price} title={item.title}/>);
     return(
       <div>
-        Products
+        {products}
       </div>
     )
   }

@@ -6,16 +6,16 @@ class ApplicationController < ActionController::Base
 
   protect_from_forgery with: :null_session
 
+  private
+
   def require_login
-    return head 401 unless authenticate_token
-    authenticate_token
+    return render json: {status: 401, error: 'Not authorized'} unless authenticate_token
+    @current_user = authenticate_token
   end
 
   def current_user
-    @current_user ||= authenticate_token
+    authenticate_token
   end
-
-  private
 
   def authenticate_token
     authenticate_with_http_token do |token, options|

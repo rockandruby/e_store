@@ -1,5 +1,5 @@
 class Api::V1::SessionsController < ApplicationController
-  before_action :require_login, only: [:logout], raise: false
+  before_action :require_login, except: [:create], raise: false
 
   def create
     user = User.find_by_email(params[:email])
@@ -11,7 +11,7 @@ class Api::V1::SessionsController < ApplicationController
     end
   end
 
-  def logout
+  def destroy
     current_user.logout
   end
 end

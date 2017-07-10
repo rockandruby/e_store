@@ -22,4 +22,5 @@ class ApplicationController < ActionController::Base
       User.find_by(token: token)
     end
   end
+
 end

@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :products
+      resources :users, only: [:edit, :create]
+      post '/users/fb' => 'users#fb_create'
       resource :sessions, only: [:create, :destroy] do
         get '/current_user' => 'sessions#user_info'
       end

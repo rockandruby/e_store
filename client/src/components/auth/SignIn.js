@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {Redirect} from 'react-router-dom'
 import {userInfo} from './../../Helpers'
+import Facebook from './Fb'
 
 class SignIn extends Component{
 
@@ -54,6 +55,7 @@ class SignIn extends Component{
           <input onChange={this.handleChange} type="password" className="form-control" name="password" />
         </div>
         <button type="submit" className="btn btn-default">Submit</button>
+        <Facebook callback={this.props.auth} />
       </form>
     )
   }

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Sidebar from './../layouts/Sidebar';
 import Dropzone from 'react-dropzone'
 
 class Profile extends Component{
@@ -38,12 +39,13 @@ class Profile extends Component{
 
   render(){
     return(
-      <div>
-        Hello, {this.props.user.name}
-        <Dropzone maxSize={500000} accept="image/*" onDrop={this.onDrop}>
-          <img style={{width: '197px'}} src={this.state.avatar}/>
-        </Dropzone>
-      </div>
+      <Sidebar title={this.props.user.name}>
+        <div>
+          <Dropzone maxSize={500000} accept="image/*" onDrop={this.onDrop}>
+            <img style={{width: '197px'}} src={this.state.avatar}/>
+          </Dropzone>
+        </div>
+      </Sidebar>
     )
   }
 

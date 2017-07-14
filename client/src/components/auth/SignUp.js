@@ -40,8 +40,9 @@ class SignUp extends Component{
   }
 
   render(){
+    const redirect = this.props.location.state ? this.props.location.state.from : '/profile';
     if(this.props.user){
-      return <Redirect to={{pathname: '/profile'}}/>
+      return <Redirect to={{pathname: redirect}}/>
     }
 
     return(

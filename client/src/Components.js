@@ -4,5 +4,6 @@ import SignIn from './components/auth/SignIn'
 import SignUp from './components/auth/SignUp'
 import SignOut from './components/auth/SignOut'
 import Profile from './components/profile/Profile'
+import Orders from './components/orders/Orders'
 
-export {Products, Home, SignIn, SignUp, SignOut, Profile}
+export {Products, Home, SignIn, SignUp, SignOut, Profile, Orders}

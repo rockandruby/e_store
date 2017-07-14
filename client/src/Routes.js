@@ -10,10 +10,12 @@ class Routes extends Component{
       <div>
         <Route exact path="/" component={Components.Home} />
         <Route path="/products" component={Components.Products} />
-        <Route path="/sign_in" render={() => (<Components.SignIn user={this.props.user} auth={this.props.auth} errorsShow={this.props.errorsShow} />)} />
-        <Route path="/sign_up" render={() => (<Components.SignUp user={this.props.user} auth={this.props.auth} errorsShow={this.props.errorsShow} />)} />
-        <PrivateRoute auth={this.props.auth} user={this.props.user} path="/sign_out" component={Components.SignOut} />
-        <PrivateRoute auth={this.props.auth} user={this.props.user} path="/profile" component={Components.Profile} />
+        <Route path="/sign_in" render={(props) => (<Components.SignIn {...Object.assign(props, this.props)} />)} />
+        <Route path="/sign_up" render={(props) => (<Components.SignUp {...Object.assign(props, this.props)} />)} />
+
+        <PrivateRoute {...this.props} path="/sign_out" component={Components.SignOut} />
+        <PrivateRoute {...this.props} path="/profile" component={Components.Profile} />
+        <PrivateRoute {...this.props} path="/orders" component={Components.Orders} />
       </div>
     )
   }
@@ -23,11 +25,11 @@ class PrivateRoute extends Component{
 
   render(){
     return(
-        <Route path={this.props.path} render={()=>(
+        <Route path={this.props.path} render={(props)=>(
           this.props.user ? (
-              <this.props.component auth={this.props.auth} user={this.props.user} />
+              <this.props.component {...this.props} />
             ) : (
-              <Redirect to={{pathname: '/sign_in'}}/>
+              <Redirect to={{pathname: '/sign_in', state: { from: props.location.pathname } }}/>
           )
         )}
         />

@@ -14,7 +14,8 @@ class App extends Component {
       errors: []
     };
     this.auth = this.auth.bind(this);
-    this.errorsShow = this.errorsShow.bind(this)
+    this.errorsShow = this.errorsShow.bind(this);
+    userInfo(this.auth)
   }
 
   auth(user){
@@ -23,10 +24,6 @@ class App extends Component {
 
   errorsShow(errors){
     this.setState({errors: [].concat(errors)})
-  }
-
-  componentDidMount(){
-    userInfo(this.auth)
   }
 
   render() {

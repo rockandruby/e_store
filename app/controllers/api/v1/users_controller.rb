@@ -2,8 +2,12 @@ class Api::V1::UsersController < ApplicationController
   before_action :require_login, only: [:upload]
 
   def create
-    user = User.create!(user_params)
-    render json: { email: user.email,  name: user.name, token: user.token}
+    user = User.create(user_params)
+    if user.errors
+      render json: {status: 422, error: user.errors.full_messages}
+    else
+      render json: { email: user.email,  name: user.name, token: user.token}
+    end
   end
 
   def fb_create

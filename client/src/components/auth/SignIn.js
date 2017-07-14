@@ -30,7 +30,7 @@ class SignIn extends Component{
     }).then((data)=> data.json())
       .then((response)=>{
         if(response.error){
-          console.log(response.error)
+          this.props.errorsShow(response.error)
         }else{
           localStorage.setItem('token', response.token);
           userInfo(this.props.auth);

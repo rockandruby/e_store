@@ -4,13 +4,14 @@ import * as Components from './Components'
 import {Redirect} from 'react-router-dom'
 
 class Routes extends Component{
+
   render(){
     return(
       <div>
         <Route exact path="/" component={Components.Home} />
         <Route path="/products" component={Components.Products} />
-        <Route path="/sign_in" render={() => (<Components.SignIn user={this.props.user} auth={this.props.auth} />)} />
-        <Route path="/sign_up" render={() => (<Components.SignUp user={this.props.user} auth={this.props.auth} />)} />
+        <Route path="/sign_in" render={() => (<Components.SignIn user={this.props.user} auth={this.props.auth} errorsShow={this.props.errorsShow} />)} />
+        <Route path="/sign_up" render={() => (<Components.SignUp user={this.props.user} auth={this.props.auth} errorsShow={this.props.errorsShow} />)} />
         <PrivateRoute auth={this.props.auth} user={this.props.user} path="/sign_out" component={Components.SignOut} />
         <PrivateRoute auth={this.props.auth} user={this.props.user} path="/profile" component={Components.Profile} />
       </div>

@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
+      resources :order_items
+      resources :orders
       resources :products
-      resources :users, only: [:edit, :create]
+      resources :users, only: [:update, :create]
       post '/users/fb' => 'users#fb_create'
       post '/users/upload' => 'users#upload'
       resource :sessions, only: [:create, :destroy] do
@@ -10,5 +12,4 @@ Rails.application.routes.draw do
       end
     end
   end
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

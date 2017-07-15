@@ -10,15 +10,13 @@ class Sidebar extends Component{
         <div id="sidebar-wrapper">
           <ul className="sidebar-nav">
             <li className="sidebar-brand">
-              <a href="#">
-                {this.props.title || 'Menu'}
-              </a>
+              <Link to="/profile">Menu</Link>
             </li>
             <li>
               <Link to="/profile/info">Profile info</Link>
             </li>
             <li>
-              <Link to="/orders">Orders</Link>
+              <Link to="/profile/orders">Orders</Link>
             </li>
           </ul>
         </div>

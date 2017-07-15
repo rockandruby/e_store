@@ -5,8 +5,8 @@ import Facebook from './Fb'
 
 class SignIn extends Component{
 
-  constructor(){
-    super();
+  constructor(props){
+    super(props);
     this.state = {
       email: '',
       password: ''

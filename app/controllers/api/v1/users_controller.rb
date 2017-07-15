@@ -1,12 +1,21 @@
 class Api::V1::UsersController < ApplicationController
-  before_action :require_login, only: [:upload]
+  before_action :require_login, only: [:upload, :update]
 
   def create
     user = User.create(user_params)
-    if user.errors
+    if user.errors.any?
       render json: {status: 422, error: user.errors.full_messages}
     else
-      render json: { email: user.email,  name: user.name, token: user.token}
+      render json: {name: user.name, token: user.token}
+    end
+  end
+
+  def update
+    @current_user.update(update_params)
+    if @current_user.errors.any?
+      render json: {status: 422, error: @current_user.errors.full_messages}
+    else
+      render json: {name: @current_user.name, avatar: @current_user.avatar, address: @current_user.address}
     end
   end
 
@@ -22,7 +31,7 @@ class Api::V1::UsersController < ApplicationController
         u.password = rand(1000..100000).to_s
       end
       user.regenerate_token if user.persisted?
-      render json: { email: user.email,  name: user.name, avatar: user.avatar, token: user.token}
+      render json: {name: user.name, avatar: user.avatar, token: user.token, address: user.address}
     else
       render json: {status: 422, error: 'Token not provided'}
     end
@@ -49,6 +58,10 @@ class Api::V1::UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(%i(name email password fb_uid))
+    params.require(:user).permit(%i(name email password))
+  end
+
+  def update_params
+    params.require(:user).permit(%i(name address))
   end
 end

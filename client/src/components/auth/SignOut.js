@@ -1,4 +1,5 @@
-import { Component } from 'react';
+import React, { Component } from 'react';
+import {Redirect} from 'react-router-dom'
 
 class SignOut extends Component{
 
@@ -17,7 +18,11 @@ class SignOut extends Component{
   }
 
   render(){
-    return(null)
+    return(
+      <div>
+        <Redirect to={{pathname: '/sign_in'}} />
+      </div>
+    )
   }
 
 }

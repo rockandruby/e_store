@@ -3,8 +3,8 @@ import Product from './Product'
 
 class Products extends Component{
 
-  constructor(){
-    super();
+  constructor(props){
+    super(props);
     this.state = {
       products: []
     }

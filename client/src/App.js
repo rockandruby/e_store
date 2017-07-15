@@ -7,8 +7,8 @@ import {userInfo} from './Helpers'
 
 class App extends Component {
 
-  constructor(){
-    super();
+  constructor(props){
+    super(props);
     this.state = {
       user: false,
       errors: []

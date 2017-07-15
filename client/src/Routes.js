@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
-import {Route} from 'react-router-dom'
+import {Route, Redirect, Switch} from 'react-router-dom'
 import * as Components from './Components'
-import {Redirect} from 'react-router-dom'
 
 class Routes extends Component{
 
   render(){
     return(
-      <div>
+      <Switch>
         <Route exact path="/" component={Components.Home} />
         <Route path="/products" component={Components.Products} />
         <Route path="/sign_in" render={(props) => (<Components.SignIn {...Object.assign(props, this.props)} />)} />
@@ -15,8 +14,7 @@ class Routes extends Component{
 
         <PrivateRoute {...this.props} path="/sign_out" component={Components.SignOut} />
         <PrivateRoute {...this.props} path="/profile" component={Components.Profile} />
-        <PrivateRoute {...this.props} path="/orders" component={Components.Orders} />
-      </div>
+      </Switch>
     )
   }
 }
@@ -27,7 +25,7 @@ class PrivateRoute extends Component{
     return(
         <Route path={this.props.path} render={(props)=>(
           this.props.user ? (
-              <this.props.component {...this.props} />
+              <this.props.component {...Object.assign(props, this.props)} />
             ) : (
               <Redirect to={{pathname: '/sign_in', state: { from: props.location.pathname } }}/>
           )

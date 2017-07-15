@@ -4,8 +4,8 @@ import Facebook from './Fb'
 
 class SignUp extends Component{
 
-  constructor(){
-    super();
+  constructor(props){
+    super(props);
     this.state = {
       name: '',
       email: '',

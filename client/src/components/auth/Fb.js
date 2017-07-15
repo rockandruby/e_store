@@ -1,31 +1,29 @@
 import React, { Component } from 'react';
 
+window.fbAsyncInit = () => {
+  window.FB.init({
+    appId      : '1696449613995461',
+    xfbml      : true,
+    version    : 'v2.8'
+  });
+};
+
+((d, s, id) => {
+  let js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js";
+  fjs.parentNode.insertBefore(js, fjs);
+})(document, 'script', 'facebook-jssdk');
+
 class Fb extends Component{
 
-  constructor(){
-    super();
-    this.handleClick = this.handleClick.bind(this)
+  constructor(props){
+    super(props);
+    this.login = this.login.bind(this);
   }
 
-  componentDidMount(){
-    window.fbAsyncInit = () => {
-      window.FB.init({
-        appId      : '1696449613995461',
-        xfbml      : true,
-        version    : 'v2.8'
-      });
-    };
-
-    ((d, s, id) => {
-      let js, fjs = d.getElementsByTagName(s)[0];
-      if (d.getElementById(id)) return;
-      js = d.createElement(s); js.id = id;
-      js.src = "//connect.facebook.net/en_US/sdk.js";
-      fjs.parentNode.insertBefore(js, fjs);
-    })(document, 'script', 'facebook-jssdk')
-  }
-
-  handleClick(e){
+  login(e){
     const obj = this;
     e.preventDefault();
 
@@ -45,14 +43,14 @@ class Fb extends Component{
         }).catch((e) => console.log(e))
 
       }else{
-        console.log('error')
+        console.log('error FB login')
       }
     })
   }
 
   render(){
     return(
-      <button onClick={this.handleClick}>Fb Login</button>
+      <button onClick={this.login}>Fb Login</button>
     )
   }
 

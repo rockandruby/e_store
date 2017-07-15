@@ -4,6 +4,8 @@ class User < ApplicationRecord
 
   attr_accessor :skip_email
 
+  has_many :orders
+
   validates :name, presence: true
   validates :email, presence: true, unless: :skip_email
   validates :email, uniqueness: true, unless: :skip_email

@@ -30,7 +30,7 @@ class SignUp extends Component{
     }).then((data)=> data.json())
       .then((response)=>{
         if(response.error){
-          this.props.errorsShow(response.error)
+          this.props.notificationShow({type: 'error', messages: response.error})
         }else{
           localStorage.setItem('token', response.token);
           this.props.auth(response);

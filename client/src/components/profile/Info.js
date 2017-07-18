@@ -64,7 +64,7 @@ class Info extends Component{
       body: JSON.stringify(this.state.data)
     }).then((response) => response.json()).then((data) => {
       if(data.error){
-        this.props.errorsShow(data.error)
+        this.props.notificationShow({type: 'error', messages: data.error})
       }else{
         this.props.auth(data);
         this.setState({edit: false})
@@ -84,7 +84,7 @@ class Info extends Component{
       <div className="col-lg-3">
         <Dropzone maxSize={500000} accept="image/*" onDrop={this.onDrop}>
           {
-            this.state.avatar ? <img style={{width: '197px'}} src={this.state.avatar}/> : 'Click to upload avatar'
+            this.state.avatar ? <img alt="" style={{width: '197px'}} src={this.state.avatar}/> : 'Click to upload avatar'
           }
         </Dropzone>
       </div>

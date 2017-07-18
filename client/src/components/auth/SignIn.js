@@ -30,7 +30,7 @@ class SignIn extends Component{
     }).then((data)=> data.json())
       .then((response)=>{
         if(response.error){
-          this.props.errorsShow(response.error)
+          this.props.notificationShow({type: 'error', messages: [].concat(response.error)})
         }else{
           localStorage.setItem('token', response.token);
           userInfo(this.props.auth);

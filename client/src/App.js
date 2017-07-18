@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {BrowserRouter as Router} from 'react-router-dom'
 import Header from './components/layouts/Header'
-import Error from './components/layouts/Error'
+import Notification from './components/layouts/Notification'
 import Routes from './Routes'
 import {userInfo} from './Helpers'
 
@@ -11,10 +11,13 @@ class App extends Component {
     super(props);
     this.state = {
       user: false,
-      errors: []
+      notification: {
+        type: '',
+        messages: []
+      }
     };
     this.auth = this.auth.bind(this);
-    this.errorsShow = this.errorsShow.bind(this);
+    this.notification = this.notification.bind(this);
     userInfo(this.auth)
   }
 
@@ -22,8 +25,8 @@ class App extends Component {
     this.setState({user})
   }
 
-  errorsShow(errors){
-    this.setState({errors: [].concat(errors)})
+  notification(notification){
+    this.setState({notification})
   }
 
   render() {
@@ -31,8 +34,8 @@ class App extends Component {
       <Router>
           <div className="container">
             <Header user={this.state.user} />
-            <Error errors = {this.state.errors} errorsShow={this.errorsShow} />
-            <Routes auth={this.auth} user={this.state.user} errorsShow={this.errorsShow} />
+            <Notification notification = {this.state.notification} notificationShow={this.notification} />
+            <Routes auth={this.auth} user={this.state.user} notificationShow={this.notification} />
           </div>
       </Router>
     );

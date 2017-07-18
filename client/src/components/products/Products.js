@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Product from './Product'
+import {Link} from 'react-router-dom';
 
 class Products extends Component{
 
@@ -17,10 +17,21 @@ class Products extends Component{
   }
 
   render(){
-    const products = this.state.products.map((item)=> <Product key={item.id} price={item.price} title={item.title}/>);
     return(
-      <div>
-        {products}
+      <div className="row">
+        {
+          this.state.products.map((p) => {
+            return (
+            <Link key={p.id} to={`/products/${p.id}`}>
+              <div className="col-lg-3 thumbnail">
+                <div><b>{p.item.title}</b></div>
+                <div><b>Price: </b>{p.item.price} $</div>
+              </div>
+            </Link>
+
+            )
+          })
+        }
       </div>
     )
   }

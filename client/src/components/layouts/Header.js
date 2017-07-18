@@ -22,6 +22,7 @@ class Header extends Component{
                 ]
               )
           }
+          <li className="pull-right"><Link to="/cart"><i className="glyphicon glyphicon-shopping-cart"/></Link></li>
         </ul>
       </div>
     )

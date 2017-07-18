@@ -3,7 +3,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :order_items
       resources :orders
-      resources :products
+      resources :products, only: [:index, :show]
       resources :users, only: [:update, :create]
       post '/users/fb' => 'users#fb_create'
       post '/users/upload' => 'users#upload'

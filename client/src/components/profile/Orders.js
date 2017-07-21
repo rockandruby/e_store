@@ -11,6 +11,12 @@ class Orders extends Component{
     }
   }
 
+  componentWillMount(){
+    if(this.props.location.state && this.props.location.state.success){
+      this.props.notificationShow({type: 'success', messages: ['Order placed!']})
+    }
+  }
+
   componentDidMount(){
     fetch('/api/v1/orders',{
       headers: {

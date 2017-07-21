@@ -11,11 +11,14 @@ class Product extends Component{
     };
     this.state = {
       product: {},
-      product_params: {},
+      product_params: {
+        details: {}
+      },
       redirect: false
     };
     this.handleProductParams = this.handleProductParams.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleChange = this.handleChange.bind(this);
     this.setValidator = this.setValidator.bind(this)
   }
 
@@ -37,15 +40,16 @@ class Product extends Component{
   }
 
   validate(){
-    let errors = [];
+    const errors = [],
+          product_params = Object.assign(this.state.product_params, this.state.product_params.details);
     Object.keys(this.rules).map((k) => {
-      if(!this.state.product_params.hasOwnProperty(k)){
+      if(!product_params.hasOwnProperty(k)){
         errors.push(k)
       }else if(Array.isArray(this.rules[k])){
-        if(!this.rules[k].includes(this.state.product_params[k])) errors.push(k)
+        if(!this.rules[k].includes(product_params[k])) errors.push(k)
       }else{
         if(this.rules[k] === 'number'){
-          if(this.rules[k] !== typeof +this.state.product_params[k] || +this.state.product_params[k] < 1){
+          if(this.rules[k] !== typeof +product_params[k] || +product_params[k] < 1){
             errors.push(k)
           }
         }
@@ -55,6 +59,16 @@ class Product extends Component{
   }
 
   handleProductParams(e){
+    const key = e.target.name,
+      value = e.target.value;
+    this.setState((prev) => {
+      return ({
+        product_params: Object.assign(prev.product_params, {details: Object.assign(prev.product_params.details, {[key]: value})})
+      })
+    });
+  }
+
+  handleChange(e){
     const key = e.target.name,
       value = e.target.value;
     this.setState((prev) => {
@@ -91,7 +105,7 @@ class Product extends Component{
                 <form onSubmit={this.handleSubmit}>
                   <div className="form-group">
                     <label>Quantity</label>
-                    <input onChange={this.handleProductParams} type="number" className="form-control" name="qty" />
+                    <input onChange={this.handleChange} type="number" className="form-control" name="qty" />
                   </div>
                   <button type="submit" className="btn btn-success">Submit</button>
                 </form>

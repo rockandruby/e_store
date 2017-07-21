@@ -16,6 +16,7 @@ class Routes extends Component{
 
         <PrivateRoute {...this.props} path="/sign_out" component={Components.SignOut} />
         <PrivateRoute {...this.props} path="/profile" component={Components.Profile} />
+        <PrivateRoute {...this.props} path="/checkout" component={Components.Checkout} />
       </Switch>
     )
   }

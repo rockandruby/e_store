@@ -4,6 +4,7 @@ import {Link} from 'react-router-dom'
 class Header extends Component{
 
   render(){
+    const count_items = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')).length : 0;
     return(
       <div>
         <ul className="nav nav-tabs">
@@ -22,7 +23,7 @@ class Header extends Component{
                 ]
               )
           }
-          <li className="pull-right"><Link to="/cart"><i className="glyphicon glyphicon-shopping-cart"/></Link></li>
+          <li className="pull-right"><Link to="/cart">{count_items || 'empty'}<i className="glyphicon glyphicon-shopping-cart"/></Link></li>
         </ul>
       </div>
     )

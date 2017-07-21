@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {Link} from 'react-router-dom'
 
 class Cart extends Component{
 
@@ -46,6 +47,7 @@ class Cart extends Component{
                 <thead>
                 <tr>
                   <td>Item</td>
+                  <td>Details</td>
                   <td>Qty</td>
                   <td>Price $</td>
                   <td>Total $</td>
@@ -58,6 +60,15 @@ class Cart extends Component{
                     total += +item_total;
                     return <tr key={k}>
                       <td>{i.title}</td>
+                      <td>
+                        {
+                          Object.keys(i.details).map((v, k) => {
+                            return(
+                              <div key={k}>{v}: {i.details[v]}</div>
+                            )
+                          })
+                        }
+                      </td>
                       <td><input data-item={k} onMouseLeave={this.removeEmpty} onChange={this.handleChange} type="number" name="qty" value={i.qty} />
                         <i data-item={k} onClick={this.handleRemove} className="glyphicon glyphicon-remove" />
                       </td>
@@ -70,7 +81,7 @@ class Cart extends Component{
               </table>
               <b>Total: </b> {total.toFixed(2)} $
               <div>
-                <button className="btn btn-success">Place order</button>
+                <Link to='/checkout' className="btn btn-success">Place order</Link>
               </div>
             </div>
             )

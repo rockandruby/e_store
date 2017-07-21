@@ -96,7 +96,7 @@ class Info extends Component{
                 <input onChange={this.handleChange} value={this.state.data.name} type="text" name="name" placeholder="Name"/>
               </div>
               <div className="form-group">
-                <textarea onChange={this.handleChange} value={this.state.data.address} name="address" placeholder="Shipping address" />
+                <textarea onChange={this.handleChange} value={this.state.data.address || ''} name="address" placeholder="Shipping address" />
               </div>
               <button type="submit" className="btn btn-success">Save</button>
             </form>) : (<div>

@@ -6,5 +6,6 @@ import SignUp from './components/auth/SignUp'
 import SignOut from './components/auth/SignOut'
 import Profile from './components/profile/Profile'
 import Cart from './components/cart/Cart'
+import Checkout from './components/cart/Checkout'
 
-export {Products, Product, Home, SignIn, SignUp, SignOut, Profile, Cart}
+export {Products, Product, Home, SignIn, SignUp, SignOut, Profile, Cart, Checkout}

@@ -16,6 +16,6 @@ class Api::V1::SessionsController < ApplicationController
   end
 
   def user_info
-    render json: {name: @current_user.name, avatar: @current_user.avatar, address: @current_user.address}
+    render json: {name: @current_user.name, avatar: @current_user.avatar, address: @current_user.address, email: @current_user.email}
   end
 end

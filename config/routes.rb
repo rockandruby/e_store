@@ -1,8 +1,7 @@
 Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
-      resources :order_items
-      resources :orders
+      resources :orders, only: [:index, :show, :create]
       resources :products, only: [:index, :show]
       resources :users, only: [:update, :create]
       post '/users/fb' => 'users#fb_create'

@@ -33,5 +33,9 @@ module ReactApi
     config.generators.assets = false
     config.generators.helper = false
     config.generators.template_engine = false
+    config.generators do |g|
+      g.factory_girl false
+      g.factory_girl dir: 'spec/factories'
+    end
   end
 end

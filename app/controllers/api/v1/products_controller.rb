@@ -7,8 +7,7 @@ class Api::V1::ProductsController < ApplicationController
 
   def show
     product = Product.find_by_id(params[:id])
-    return respond_with product: product, item: product.productable if product
-    respond_with product
+    render json: { product: product, item: product.try(:productable)}
   end
 
 end

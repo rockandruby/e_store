@@ -25,7 +25,7 @@ class Product extends Component{
   componentDidMount(){
     fetch('/api/v1/products/' + this.props.match.params.id).then((data)=> data.json())
       .then((product)=>{
-        if(product){
+        if(product.product){
           this.product_info = Details[product.product.productable_type];
           this.setState({product})
         }else{

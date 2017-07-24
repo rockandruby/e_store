@@ -27,7 +27,7 @@ class Api::V1::OrdersController < ApplicationController
     if order.save
       render json: {}
     else
-      render json: {status: 422, error: user.errors.full_messages}
+      render json: {status: 422, error: @current_user.errors.full_messages}
     end
   end
 end

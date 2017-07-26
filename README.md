@@ -1,18 +1,12 @@
-# messanger
-Simple messanger written in pure Php using MVC pattern.
+Simple SPA e-store built on pure ReactJS and RailsAPI.
 
-##### Stack: Php7, Jquery, Bootstrap, Mysql.
+##### Stack: ReactJs, RailsAPI, Bootstrap, PostgreSQL.
 
 App provides following functionality:
-* Admin
-    * CRUD for users
+
 * User
     * Edit profile
-    * Send messages to other users in realtime
-    * See quantity of new messages per dialog
+    * View orders
+    * Place orders
     
-App's installation:
-   * Set db config in config/dp.php
-   * Change error handling if needed in config/error.php
-   * In config/app.php you shall set own salt for password hashing
-   * Run migrations script migrations.php
+###### Key features: Facebook OAuth2, AWS S3 avatar upload    

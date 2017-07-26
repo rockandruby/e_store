@@ -1,0 +1,2 @@
+api: rails s -p 3002
+client: cd client && PORT=3000 npm start

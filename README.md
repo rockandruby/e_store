@@ -1,3 +1,5 @@
+https://react-eshop.herokuapp.com/
+
 Simple SPA e-store built on pure ReactJS and RailsAPI.
 
 ##### Stack: ReactJs, RailsAPI, Bootstrap, PostgreSQL.

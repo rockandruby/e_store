@@ -1,24 +1,18 @@
-# README
+# messanger
+Simple messanger written in pure Php using MVC pattern.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+##### Stack: Php7, Jquery, Bootstrap, Mysql.
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+App provides following functionality:
+* Admin
+    * CRUD for users
+* User
+    * Edit profile
+    * Send messages to other users in realtime
+    * See quantity of new messages per dialog
+    
+App's installation:
+   * Set db config in config/dp.php
+   * Change error handling if needed in config/error.php
+   * In config/app.php you shall set own salt for password hashing
+   * Run migrations script migrations.php
